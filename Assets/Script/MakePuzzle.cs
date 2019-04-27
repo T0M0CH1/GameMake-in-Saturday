@@ -29,10 +29,11 @@ public class MakePuzzle : MonoBehaviour {
     static public int Checker = 0;
     static public int ColorInfo;
     public Image image;
-    private Sprite sprite;
+    [SerializeField]
+    private Sprite sprite;    
 
     void Start () {
-        
+
     }
 	
 	void Update () {
@@ -54,7 +55,7 @@ public class MakePuzzle : MonoBehaviour {
                     Parent.transform.position = LHS.transform.position;
                     for (int i = 0; i <= 1; i++)
                     {
-                        randColor = Random.Range(0, 4);
+                        randColor = Random.Range(0, 5);
                         prefab = Instantiate(Puzzle);
                         prefab.transform.SetParent(canvas.transform, false);
                         prefab.GetComponent<Image>().color = colorTable[randColor];
@@ -62,9 +63,8 @@ public class MakePuzzle : MonoBehaviour {
                         prefab.transform.SetParent(Parent.transform);
                         if (randColor == 4)
                         {
-                            sprite = Resources.Load<Sprite>("bakudann");
-                            image = this.GetComponent<Image>();
-                            image.sprite = sprite;
+                            prefab.GetComponent<Image>().sprite = sprite;
+                            prefab.GetComponent<Image>().color = colorTable[3];
                         }
                         if (i == 0)
                         {
@@ -86,7 +86,7 @@ public class MakePuzzle : MonoBehaviour {
                     Parent.transform.position = LHS.transform.position;
                     for (int i = 0; i <= 1; i++)
                     {
-                        randColor = Random.Range(0, 4);
+                        randColor = Random.Range(0, 5);
                         prefab = Instantiate(Puzzle);
                         prefab.transform.SetParent(canvas.transform, false);
                         prefab.GetComponent<Image>().color = colorTable[randColor];
@@ -94,9 +94,8 @@ public class MakePuzzle : MonoBehaviour {
                         prefab.transform.SetParent(Parent.transform);
                         if (randColor == 4)
                         {
-                            sprite = Resources.Load<Sprite>("bakudann");
-                            image = this.GetComponent<Image>();
-                            image.sprite = sprite;
+                            prefab.GetComponent<Image>().sprite = sprite;
+                            prefab.GetComponent<Image>().color = colorTable[3];
                         }
                         if (i == 0)
                         {
@@ -122,12 +121,33 @@ public class MakePuzzle : MonoBehaviour {
                     Parent.transform.position = LHS.transform.position;
                     for (int i = 0; i <= 2; i++)
                     {
-                        randColor = Random.Range(0, 4);
+                        randColor = Random.Range(0, 5);
+                        if (i == 2)
+                        {
+                            prefab = Instantiate(Puzzle);
+                            prefab.transform.SetParent(canvas.transform, false);
+                            prefab.GetComponent<Image>().color = colorTable[randColor];
+                            prefab.transform.position = new Vector2(LHS.transform.position.x, LHS.transform.position.y - zahyou[i]);
+                            prefab.transform.SetParent(Parent.transform);
+                            prefabs[i] = prefab;
+                            LHS_Bool = true;
+                            if (randColor == 4)
+                            {
+                                prefab.GetComponent<Image>().sprite = sprite;
+                                prefab.GetComponent<Image>().color = colorTable[3];
+                            }
+                            return;
+                        }
+                        prefab = Instantiate(Puzzle);
+                        prefab.transform.SetParent(canvas.transform, false);
+                        prefab.GetComponent<Image>().color = colorTable[randColor];
+                        prefab.transform.position = new Vector2(LHS.transform.position.x + zahyou[i], LHS.transform.position.y);
+                        prefab.transform.SetParent(Parent.transform);
+
                         if (randColor == 4)
                         {
-                            sprite = Resources.Load<Sprite>("bakudann");
-                            image = this.GetComponent<Image>();
-                            image.sprite = sprite;
+                            prefab.GetComponent<Image>().sprite = sprite;
+                            prefab.GetComponent<Image>().color = colorTable[3];
                         }
                         if (i == 0)
                         {
@@ -140,24 +160,7 @@ public class MakePuzzle : MonoBehaviour {
                         else if (i == 2)
                         {
                             Color3 = randColor;
-                        }
-
-                        if (i == 2)
-                        {
-                            prefab = Instantiate(Puzzle);
-                            prefab.transform.SetParent(canvas.transform, false);
-                            prefab.GetComponent<Image>().color = colorTable[randColor];
-                            prefab.transform.position = new Vector2(LHS.transform.position.x, LHS.transform.position.y - zahyou[i]);
-                            prefab.transform.SetParent(Parent.transform);
-                            prefabs[i] = prefab;
-                            LHS_Bool = true;
-                            return;
-                        }
-                        prefab = Instantiate(Puzzle);
-                        prefab.transform.SetParent(canvas.transform, false);
-                        prefab.GetComponent<Image>().color = colorTable[randColor];
-                        prefab.transform.position = new Vector2(LHS.transform.position.x + zahyou[i], LHS.transform.position.y);
-                        prefab.transform.SetParent(Parent.transform);
+                        }                        
 
                         prefabs[i] = prefab;
 
@@ -171,12 +174,33 @@ public class MakePuzzle : MonoBehaviour {
                     Parent.transform.position = LHS.transform.position;
                     for (int i = 0; i <= 2; i++)
                     {
-                        randColor = Random.Range(0, 4);
+                        randColor = Random.Range(0, 5);
+                        if (i == 2)
+                        {
+                            prefab = Instantiate(Puzzle);
+                            prefab.transform.SetParent(canvas.transform, false);
+                            prefab.GetComponent<Image>().color = colorTable[randColor];
+                            prefab.transform.position = new Vector2(LHS.transform.position.x + zahyou[i], LHS.transform.position.y + zahyou[i]);
+                            prefab.transform.SetParent(Parent.transform);
+                            prefabs[i] = prefab;
+                            LHS_Bool = true;
+                            if (randColor == 4)
+                            {
+                                prefab.GetComponent<Image>().sprite = sprite;
+                                prefab.GetComponent<Image>().color = colorTable[3];
+                            }
+                            return;
+                        }
+                        prefab = Instantiate(Puzzle);
+                        prefab.transform.SetParent(canvas.transform, false);
+                        prefab.GetComponent<Image>().color = colorTable[randColor];
+                        prefab.transform.position = new Vector2(LHS.transform.position.x + zahyou[i], LHS.transform.position.y);
+                        prefab.transform.SetParent(Parent.transform);
+
                         if (randColor == 4)
                         {
-                            sprite = Resources.Load<Sprite>("bakudann");
-                            image = this.GetComponent<Image>();
-                            image.sprite = sprite;
+                            prefab.GetComponent<Image>().sprite = sprite;
+                            prefab.GetComponent<Image>().color = colorTable[3];
                         }
                         if (i == 0)
                         {
@@ -189,24 +213,7 @@ public class MakePuzzle : MonoBehaviour {
                         else if (i == 2)
                         {
                             Color3 = randColor;
-                        }
-
-                        if (i == 2)
-                        {
-                            prefab = Instantiate(Puzzle);
-                            prefab.transform.SetParent(canvas.transform, false);
-                            prefab.GetComponent<Image>().color = colorTable[randColor];
-                            prefab.transform.position = new Vector2(LHS.transform.position.x + zahyou[i], LHS.transform.position.y + zahyou[i]);
-                            prefab.transform.SetParent(Parent.transform);
-                            prefabs[i] = prefab;
-                            LHS_Bool = true;
-                            return;
-                        }
-                        prefab = Instantiate(Puzzle);
-                        prefab.transform.SetParent(canvas.transform, false);
-                        prefab.GetComponent<Image>().color = colorTable[randColor];
-                        prefab.transform.position = new Vector2(LHS.transform.position.x + zahyou[i], LHS.transform.position.y);
-                        prefab.transform.SetParent(Parent.transform);
+                        }                       
 
                         prefabs[i] = prefab;
                     }
