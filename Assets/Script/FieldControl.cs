@@ -22,6 +22,17 @@ public class FieldControl : MonoBehaviour {
             }
         }
     }
-	void Update () {      
+	void Update () {
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            for(int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < 5; j++)
+                {
+                    Debug.Log(PuzzleField[i,j]);
+                }
+            }
+            Debug.Log("-----------------");
+        }
 	}
 }
