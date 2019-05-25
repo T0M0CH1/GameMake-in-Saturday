@@ -44,16 +44,12 @@ public class PuzzleChecker : MonoBehaviour {
             for (int j = 0; j < 5; j++)
             {
                 if (targets[i, j])
-                {
-                    if (FieldControl.objectsField[i, j].GetComponent<Image>().color == Color.white && targets[i, j])
-                    {
-                        //SceneManager.LoadScene("GameOver");
-                    }
+                {                    
                     //Debug.Log(FieldControl.objectsField[i, j]);
                     Destroy(FieldControl.objectsField[i, j]);
                     sound01.PlayOneShot(sound01.clip);
                     score += 1;
-                    FieldControl.PuzzleField[i, j] = 5;
+                    FieldControl.PuzzleField[i, j] = 0;
                 }
             }
         }

@@ -18,7 +18,7 @@ public class FieldControl : MonoBehaviour {
                 var p = Instantiate<GameObject>(panel);
                 p.transform.SetParent(canvas.transform, false);
                 p.transform.localPosition = new Vector2(100 * x - 200, 200 - 100 * y);
-                PuzzleField[x,y] = 5;
+                PuzzleField[x,y] = 0;
             }
         }
     }
@@ -29,7 +29,7 @@ public class FieldControl : MonoBehaviour {
             {
                 for (int j = 0; j < 5; j++)
                 {
-                    Debug.Log(PuzzleField[i,j]);
+                    Debug.Log(PuzzleField[j,i]);
                 }
             }
             Debug.Log("-----------------");
