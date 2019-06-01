@@ -49,9 +49,10 @@ public class DragAndDrop : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
             if (hit.gameObject.CompareTag("DroppableField"))
             {
                 //おいていい場所か確認する処理
-                //Puzzlefieldが5以外なら置かない処理
 
-                transform.position = hit.gameObject.transform.position;
+                //Puzzlefieldが5以外なら置かない処理                
+
+                transform.position = hit.gameObject.transform.position;               
                 this.enabled = false;
                 MakePuzzle.LHS_Bool = false;
                 Vector2 NowPos = hit.gameObject.transform.localPosition;

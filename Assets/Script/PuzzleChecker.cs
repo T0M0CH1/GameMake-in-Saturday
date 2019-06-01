@@ -8,10 +8,11 @@ using UnityEngine.UI;
 public class PuzzleChecker : MonoBehaviour {
 
     
-    private bool[,] isCheck = new bool[5, 5];
+    public static bool[,] isCheck = new bool[5, 5];
     private AudioSource sound01;
     public Text scoreText;
     private int score;
+    private int bombCount = 0;
 
     void Start()
     {
@@ -29,6 +30,10 @@ public class PuzzleChecker : MonoBehaviour {
                 int res = checkColor(i, j);
                 if (res >= 3)
                 {
+                    //if(bombCount > 0)
+                    //{
+                    //    SceneManager.LoadScene("GameOver");
+                    //}
                     //Debug.Log(res);
                     targetDelete(isCheck);
                 }
@@ -60,28 +65,32 @@ public class PuzzleChecker : MonoBehaviour {
     {
         int result = 0;
         int mine = FieldControl.PuzzleField[Posx, Posy];
-        if (mine == 5) { return 0; }
+        if (mine == 0) { return 0; }
        
         isCheck[Posx, Posy] = true;
         //下のパズルの状態をチェック
         if (Posy != 4 && IsSameColor(Posx,Posy,Posx,Posy + 1))
         {
             result += checkColor(Posx, Posy + 1);
+            bombCount += 1;
         }
         //上のパズルの状態をチェック
         if (Posy != 0 && IsSameColor(Posx, Posy, Posx, Posy - 1))
         {
             result += checkColor(Posx, Posy - 1);
+            bombCount += 1;
         }
         //右のパズルの状態をチェック
         if (Posx != 4 && IsSameColor(Posx, Posy, Posx + 1, Posy))
         {
             result += checkColor(Posx + 1, Posy);
+            bombCount += 1;
         }
         //左のパズルの状態をチェック
         if (Posx != 0 && IsSameColor(Posx, Posy, Posx - 1, Posy))
         {
             result += checkColor(Posx - 1, Posy);
+            bombCount += 1;
         }
         return result + 1;
     }

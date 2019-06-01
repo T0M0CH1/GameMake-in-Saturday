@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneManager : MonoBehaviour {
+public class sceneChanger : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
